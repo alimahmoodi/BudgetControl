@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="mystyle.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
+            rel="stylesheet"
+        />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="show-budget">
+            <div class="balance">2000</div>
+            <div class="budget budget--income">
+                <span class="show-title">income</span>
+                <span class="show-amount">2000</span>
+            </div>
+            <div class="budget budget--expences">
+                <span class="show-title">Expenses</span>
+                <span class="show-amount">2000</span>
+            </div>
+        </div>
+        <div class="enter-inputs">
+            <select class="input enter-type">
+                <option value="inc">+</option>
+                <option value="dec">-</option>
+            </select>
+            <input type="text" placeholder="enter title" class="input enter-descreption" />
+            <input type="number" class="input enter-value" />
+        </div>
+        <div class="descreptions">
+            <div class="list-container">
+                <h1 class="description-header description-header--income">incomes</h1>
+                <div class="list">
+                    <div class="item">
+                        <span class="income-title">salary</span>
+                        <span class="income-amount">20</span>
+                    </div>
+                    <div class="item">
+                        <span class="income-title">salary</span>
+                        <span class="income-amount">20</span>
+                    </div>
+                </div>
+            </div>
+            <div class="list-container">
+                <h1 class="description-header description-header--expenses">expenses</h1>
+                <div class="list">
+                    <div class="item">
+                        <span class="expenses-title">cost</span>
+                        <span class="expenses-amount">200</span>
+                    </div>
+                    <div class="item">
+                        <span class="expenses-title">cost</span>
+                        <span class="expenses-amount">200</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="myapp.js"></script>
+    </body>
+</html>
