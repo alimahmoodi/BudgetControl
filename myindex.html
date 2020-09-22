@@ -8,18 +8,18 @@
             href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap"
             rel="stylesheet"
         />
-        <title>Document</title>
+        <title>My Budgety</title>
     </head>
     <body>
         <div class="show-budget">
-            <div class="balance">2000</div>
+            <div class="balance"></div>
             <div class="budget budget--income">
                 <span class="show-title">income</span>
-                <span class="show-amount">2000</span>
+                <span class="total-incomes show-amount"></span>
             </div>
-            <div class="budget budget--expences">
+            <div class="budget budget--expenses">
                 <span class="show-title">Expenses</span>
-                <span class="show-amount">2000</span>
+                <span class="total-expenses show-amount"></span>
             </div>
         </div>
         <div class="enter-inputs">
@@ -27,18 +27,18 @@
                 <option selected value="incomes">+</option>
                 <option value="expenses">-</option>
             </select>
-            <input type="text" placeholder="enter title" class="input enter-descreption" />
-            <input type="number" class="input enter-value" />
+            <input type="text" placeholder="Enter Title" class="input enter-descreption" />
+            <input type="number" placeholder="Value" class="input enter-value" />
             <input type="button" value="submit" class="submit-input" />
         </div>
         <div class="descreptions">
             <div class="list-container">
                 <h1 class="description-header description-header--income">incomes</h1>
-                <div class="income__list list"></div>
+                <div class="incomes income__list list"></div>
             </div>
             <div class="list-container">
                 <h1 class="description-header description-header--expenses">expenses</h1>
-                <div class="expences__list list"></div>
+                <div class="expenses expenses__list list"></div>
             </div>
         </div>
         <script src="myapp.js"></script>
