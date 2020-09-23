@@ -35,7 +35,6 @@ const holdInformation = (function () {
             let newItem, id;
             if (data.descriptions[type].length > 0) {
                 id = data.descriptions[type][data.descriptions[type].length - 1].id + 1;
-                console.log(id);
             } else id = 0;
 
             if (type === "incomes") {
@@ -51,8 +50,6 @@ const holdInformation = (function () {
         deleteItem: function (type, id) {
             const index = data.descriptions[type].findIndex((item) => item.id === parseInt(id));
 
-            console.log(index);
-            // console.log(data);
             data.descriptions[type].splice(index, 1);
         },
         calculateBudget: function () {
@@ -71,6 +68,27 @@ const holdInformation = (function () {
 })();
 
 const showInformations = (function () {
+    const formatNumber = (num, type) => {
+        let float, int, splitNum;
+        num = Math.abs(num);
+        num = num.toFixed(2);
+        splitNum = num.split(".");
+        int = splitNum[0];
+        float = splitNum[1];
+        let intArr = [...int];
+        let leng = intArr.length;
+        for (let i = 0; i < int.length / 3; i++) {
+            intArr.splice(leng - 3 * i, 0, ",");
+        }
+
+        intArr.pop();
+        joinedTest = intArr.join("");
+        joinedTest = joinedTest + "." + float;
+
+        if (joinedTest == "0.00") {
+            return "" + int;
+        } else return (type === "incomes" ? "+" : "-") + " " + joinedTest;
+    };
     return {
         getInput: function () {
             return {
@@ -90,11 +108,11 @@ const showInformations = (function () {
             if (type === "expenses") {
                 element = ".expenses__list";
                 html =
-                    '<div id="%id%" class="item"><span class="income-title">%description%</span><span class="income-amount">%amount%</span><img src="./close-red.svg" alt="close" class="item-delete" /></div>';
+                    '<div id="%id%" class="item"><span class="income-title">%description%</span><span class="expenses-amount">%amount%</span><img src="./close-red.svg" alt="close" class="item-delete" /></div>';
             }
             html = html.replace("%id%", newItem.id);
             html = html.replace("%description%", newItem.descreption);
-            html = html.replace("%amount%", newItem.amount);
+            html = html.replace("%amount%", formatNumber(newItem.amount, type));
 
             document.querySelector(element).insertAdjacentHTML("beforeend", html);
 
@@ -104,9 +122,19 @@ const showInformations = (function () {
         },
 
         displayBudget: function (budget) {
-            document.querySelector(".balance").innerHTML = budget.totalBudget;
-            document.querySelector(".total-expenses").innerHTML = budget.totalExpenses;
-            document.querySelector(".total-incomes").innerHTML = budget.totalIncomes;
+            let type;
+            if (budget.totalBudget < 0) type = "expenses";
+            else type = "incomes";
+
+            document.querySelector(".balance").innerHTML = formatNumber(budget.totalBudget, type);
+            document.querySelector(".total-expenses").innerHTML = formatNumber(
+                budget.totalExpenses,
+                "expenses"
+            );
+            document.querySelector(".total-incomes").innerHTML = formatNumber(
+                budget.totalIncomes,
+                "incomes"
+            );
         },
     };
 })();
@@ -135,9 +163,7 @@ const controlInformation = (function (showInformations, holdInformation) {
     };
 
     const deleteItem = (e) => {
-        console.log(e);
         const item = e.target;
-        // console.log(e.target.parentNode.parentNode.classList[0], e.target.parentNode.id);
         const type = e.target.parentNode.parentNode.classList[0];
         const id = e.target.parentNode.id;
         if (item.classList[0] === "item-delete") {

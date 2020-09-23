@@ -10,7 +10,7 @@ html {
     font-size: 62.5%;
 }
 .balance {
-    width: 20rem;
+    width: 40rem;
     height: 8rem;
     font-size: 3rem;
     margin: 0rem auto;
@@ -21,8 +21,9 @@ html {
 }
 .show-budget {
     height: 35rem;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(back.png);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url(image.jpg);
     padding-top: 4rem;
+    background-position: bottom;
 }
 .budget {
     width: 35rem;
@@ -148,6 +149,11 @@ html {
 
 .expenses-amount {
     color: #ff5049;
+    transition: transform 0.3s;
+    z-index: 100;
+}
+.item:hover .expenses-amount {
+    transform: translateX(-30px);
 }
 
 .item-delete {
